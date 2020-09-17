@@ -1,0 +1,29 @@
+.detail {
+    padding: 18px;
+}
+
+.detail_heading {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 10px;
+}
+
+.reply {
+    border: 1px solid #7548e2;
+    padding: 14px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.12);
+    padding: 50px;
+    margin-top: 20px;
+}
+
+.mb_40 {
+    margin-bottom: 40px;
+}

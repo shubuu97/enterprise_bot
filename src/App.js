@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { loginUser } from "./Redux/actions/auth";
+import Header from "./Header";
+import IntentsList from "./IntentList";
+import IntentDetail from "./IntentDetail";
+import "./app.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = ({ loginUser, showIntentDetail }) => {
+    useEffect(() => {
+        loginUser();
+    }, []);
 
-export default App;
+    return (
+        <>
+            <Header />
+            <div className="container">
+                <div className="intents_list">
+                    <IntentsList />
+                </div>
+                <div className="intent_detail">
+                    {showIntentDetail ? (
+                        <IntentDetail />
+                    ) : (
+                        <h3 className="right_text">Please select a intent!</h3>
+                    )}
+                </div>
+            </div>
+        </>
+    );
+};
+
+const mapStateToProps = (state) => {
+    const showIntentDetail = "detail" in state?.intents ?? {};
+    return { showIntentDetail };
+};
+
+export default connect(mapStateToProps, { loginUser })(App);
